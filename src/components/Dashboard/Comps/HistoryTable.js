@@ -6,7 +6,9 @@ const HistoryTable = () => {
   const getLogger = cookie.get("SalesLogin");
   const loggerEmail = getLogger.email;
 
-  const salesHistory = cookie.get(loggerEmail);
+  const totalSales = cookie.get(loggerEmail);
+  const date = totalSales.date;
+  const salesHistory = totalSales.sales;
 
   const addition = () => {
     let numArray = [];
@@ -36,9 +38,13 @@ const HistoryTable = () => {
         </div>
       ) : (
         <div className="flex flex-col gap-3 w-full h-auto lg:mt-12 md:mt-6 mt-6">
-          <h1 className="text-rose-700 md:text-3xl text-2xl font-semibold">
+          <h1 className="text-gray-900 md:text-5xl text-3xl font-semibold">
             Your Sales History
           </h1>
+
+          <h2 className="text-rose-700 mt-3 md:text-3xl text-2xl font-light">
+            {date}
+          </h2>
           <main className="w-full h-auto overflow-x-auto">
             <table className="w-full text-sm text-center text-gray-900 border border-gray-900">
               <thead className="text-md text-gray-200 uppercase bg-gray-900">

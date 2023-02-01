@@ -1,7 +1,8 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import { useCookies, Cookies } from 'react-cookie';
+import { format } from "date-fns";
 
 const AuthContext = createContext({});
 
@@ -60,7 +61,14 @@ export const AuthProvider = ({ children }) => {
         const getLogger = cookie.get("SalesLogin");
         const loggerEmail = getLogger.email;
 
-        setCookie(loggerEmail, sales, { path: "/" })
+        const date = format(new Date(), 'EEEE, do MMMM, yyyy');
+
+        const loggedSales = {
+            date,
+            sales
+        }
+
+        setCookie(loggerEmail, loggedSales, { path: "/" })
         toast.success('Data Saved!', {
             position: "top-right",
             autoClose: 1000,
