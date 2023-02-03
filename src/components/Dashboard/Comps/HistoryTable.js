@@ -7,10 +7,9 @@ const HistoryTable = () => {
   const loggerEmail = getLogger.email;
 
   const totalSales = cookie.get(loggerEmail);
-  const date = totalSales.date;
-  const salesHistory = totalSales.sales;
 
   const addition = () => {
+    const salesHistory = totalSales.sales;
     let numArray = [];
     const nums = [...numArray];
     if (salesHistory) {
@@ -27,7 +26,7 @@ const HistoryTable = () => {
 
   return (
     <section className="w-full h-auto flex flex-col lg:px-20 md:px-8 px-4">
-      {!salesHistory ? (
+      {!totalSales ? (
         <div className="flex flex-col gap-3 items-center md:mt-12 mt-6">
           <h1 className="text-rose-700 capitalize text-center md:text-4xl text-3xl font-semibold">
             You don't have any history of sales
@@ -43,7 +42,7 @@ const HistoryTable = () => {
           </h1>
 
           <h2 className="text-rose-700 mt-3 md:text-3xl text-2xl font-light">
-            {date}
+            {totalSales ? totalSales.date : null}
           </h2>
           <main className="w-full h-auto overflow-x-auto">
             <table className="w-full text-sm text-center text-gray-900 border border-gray-900">
@@ -79,7 +78,7 @@ const HistoryTable = () => {
                 </tr>
               </thead>
               <tbody>
-                {salesHistory.map((sale) => (
+                {totalSales.sales.map((sale) => (
                   <tr
                     className="bg-gray-200 border-b border-gray-900 transition-all duration-200 hover:bg-gray-300"
                     key={sale.id}

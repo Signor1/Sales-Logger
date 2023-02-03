@@ -96,11 +96,6 @@ export const AuthProvider = ({ children }) => {
         });
     }
 
-
-    // useEffect(() => {
-    //     setCookie(loggerEmail, sales, { path: "/" });
-    // }, [sales.length, loggerEmail, sales, setCookie]);
-
     return <AuthContext.Provider value={{ user, cookies, sales, setSales, setUser, login, logout, updateSales, storeData, deleteTable }}>
         {children}
     </AuthContext.Provider>
